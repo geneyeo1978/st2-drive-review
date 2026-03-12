@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head><title>Test</title></head>
+<body>
+<h2 id="status">Testing JSONBin connection...</h2>
+<script>
+const BIN_ID  = "69b27830aa77b81da9da80ff";
+const API_KEY = "$2a$10$R2QK2lZWtH7HQpX70Tr.LejYi8JyNMkkqrr7gYNyBPHoHuACxW1xC";
+
+fetch("https://api.jsonbin.io/v3/b/" + BIN_ID + "/latest", {
+  headers: { "X-Master-Key": API_KEY }
+})
+.then(r => r.json())
+.then(data => {
+  document.getElementById("status").textContent = "✅ JSONBin connected! Data: " + JSON.stringify(data.record);
+  document.getElementById("status").style.color = "green";
+})
+.catch(err => {
+  document.getElementById("status").textContent = "❌ Connection failed: " + err;
+  document.getElementById("status").style.color = "red";
+});
+</script>
+</body>
+</html>
